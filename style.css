@@ -1,0 +1,471 @@
+/* Rusal Dashboard — Modern Design v2 */
+
+:root {
+  --bg: #0a0e27;
+  --bg-card: rgba(255, 255, 255, 0.05);
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --accent: #FF9800;
+  --accent-2: #2196F3;
+  --border: rgba(255, 255, 255, 0.1);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --radius: 16px;
+  --radius-sm: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* Dashboard Container */
+.dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  padding-bottom: 100px;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.back-btn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 16px;
+}
+
+/* Summary Cards */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.summary-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.summary-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.summary-value {
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.summary-sublabel {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Divisions Grid */
+.divisions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.division-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid;
+  border-radius: var(--radius);
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.division-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.division-emoji {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.division-name {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.division-count {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* View Toggle */
+.view-toggle {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  padding: 16px 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, var(--bg), transparent);
+  z-index: 100;
+}
+
+.toggle-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.toggle-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* Project Detail */
+.project-detail {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.project-icon-large {
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.project-title-large {
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+
+.detail-section {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.detail-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.detail-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.detail-value {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.detail-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.detail-highlight {
+  background: rgba(255, 152, 0, 0.1);
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--accent);
+}
+
+.detail-effect {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.detail-status {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.detail-next {
+  font-size: 14px;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* Progress Bar */
+.progress-bar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.progress-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Projects List Compact */
+.projects-list-compact {
+  margin-bottom: 24px;
+}
+
+.project-compact {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.project-compact:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(4px);
+}
+
+.project-compact-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.project-icon {
+  font-size: 24px;
+}
+
+.project-title-small {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.project-status-badge {
+  font-size: 12px;
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.project-effect-small {
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 600;
+  padding-left: 36px;
+}
+
+/* Key Projects List */
+.key-projects-list {
+  margin-bottom: 24px;
+}
+
+.key-project-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.key-project-item:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.key-project-icon {
+  font-size: 32px;
+}
+
+.key-project-info {
+  flex: 1;
+}
+
+.key-project-info h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.key-project-info p {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.key-project-status {
+  font-size: 12px;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+}
+
+/* All Divisions */
+.all-divisions {
+  margin-bottom: 24px;
+}
+
+.all-division-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--cat-color);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.all-division-card:hover {
+  transform: translateX(4px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.all-division-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.all-division-emoji {
+  font-size: 28px;
+}
+
+.all-division-name {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.all-division-count {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .dashboard {
+    padding: 40px;
+    padding-bottom: 120px;
+  }
+  
+  .header h1 {
+    font-size: 36px;
+  }
+  
+  .divisions-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .project-title-large {
+    font-size: 28px;
+  }
+  
+  .view-toggle {
+    padding: 20px 0;
+  }
+}

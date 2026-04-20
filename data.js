@@ -1,0 +1,300 @@
+const CATEGORIES = [
+  { id: "aluminum", name: "АЛЮМИНИЕВЫЙ ДИВИЗИОН", emoji: "🏭", color: "#FF9800" },
+  { id: "alumina", name: "ГЛИНОЗЁМНЫЙ ДИВИЗИОН", emoji: "⛏️", color: "#4CAF50" },
+  { id: "downstream", name: "ДАУНСТРИМ", emoji: "📦", color: "#2196F3" },
+  { id: "central", name: "ЦЕНТРАЛЬНАЯ КОМПАНИЯ", emoji: "🏢", color: "#9C27B0" }
+];
+
+const KEY_PROJECTS = [
+  {
+    id: "energy",
+    icon: "⚡",
+    title: "ЭНЕРГОЭФФЕКТИВНОСТЬ",
+    customer: "Русал Энерго",
+    object: "Все площадки",
+    description: "ИИ-система оптимизации потребления электроэнергии на основе прогнозирования нагрузки и динамического ценообразования.",
+    current_situation: "Ручное планирование энергопотребления без учета прогнозов цен на рынке.",
+    effect: "10 млн USD/год",
+    status: "🟡 В РАБОТЕ",
+    progress: 65,
+    next_step: "Внедрение на 3 площадках"
+  },
+  {
+    id: "digital-plant",
+    icon: "🏭",
+    title: "ЦИФРОВОЙ ЗАВОД",
+    customer: "Русал Технологии",
+    object: "САЗ, КРАЗ",
+    description: "Интеллектуальная система управления сверхсложным производством с 50 000+ параметров контроля.",
+    current_situation: "Разрозненные системы контроля, ручной анализ данных.",
+    effect: "Оптимизация цепочки",
+    status: "🟡 В РАЗРАБОТКЕ",
+    progress: 40,
+    next_step: "MVP пилот"
+  },
+  {
+    id: "toro",
+    icon: "🔧",
+    title: "ЦИФРОВОЕ ТОРО",
+    customer: "Русал Технологии",
+    object: "Все площадки",
+    description: "Предиктивная система обслуживания оборудования на основе анализа вибрации, тепловизии и ИИ-моделей.",
+    current_situation: "Плановое ТО по графику, аварийные остановки.",
+    effect: "13 млн USD/год",
+    status: "🟢 ЗАВЕРШЕН",
+    progress: 100,
+    next_step: "Масштабирование"
+  },
+  {
+    id: "alverse",
+    icon: "🌐",
+    title: "ALVERSE",
+    customer: "Русал",
+    object: "Глобально",
+    description: "Цифровой двойник производства алюминия с полной симуляцией процессов и прогнозированием качества.",
+    current_situation: "Отсутствует единая модель производства.",
+    effect: "+100 млн USD/год",
+    status: "🟡 В РАЗРАБОТКЕ",
+    progress: 25,
+    next_step: "Сбор данных"
+  }
+];
+
+const PROJECTS = [
+  {
+    id: 20,
+    icon: "⚙️",
+    title: "СНИЖЕНИЕ ПОТРЕБЛЕНИЯ ЭНЕРГОРЕСУРСОВ (МАЗУТ)",
+    customer: "ЩЕРБАКОВ Е.А. / САЗ",
+    object: "ПЕЧЬ СУШКИ КОКСА",
+    description: "ИИ-система управляет процессом подачи мазута в печь сушки кокса на основании онлайн данных влагомера кокса с конвейерной линии.",
+    current_situation: "РАЗ В СМЕНУ ОПЕРАТОРЫ ЗАМЕРЯЮТ ВЛАГУ И ВЫСТАВЛЯЮТ ПАРАМЕТРЫ РАБОТЫ ПЕЧИ. ВЛАЖНОСТЬ КОКСА МОЖЕТ ИЗМЕНЯТЬСЯ НЕСКОЛЬКО РАЗ В ТЕЧЕНИЕ СМЕНЫ.",
+    effect: "+8 млн рублей в год",
+    category_id: "aluminum",
+    category_name: "АЛЮМИНИЕВЫЙ ДИВИЗИОН",
+    category_emoji: "🏭",
+    status: "🟡 ОСНАЩЕНИЕ ВЛАГОМЕРОМ",
+    progress: 75,
+    next_step: "РАЗРАБОТКА СВЯЗКИ ВЛАГОМЕРА И ПЕЧИ СУШКИ"
+  },
+  {
+    id: 21,
+    icon: "🚚",
+    title: "ОПТИМИЗАЦИЯ ЛОГИСТИКИ АД",
+    customer: "АД (5 заводов)",
+    object: "5 заводов АД",
+    description: "Оптимизация логистических процессов с использованием алгоритмов машинного обучения. Интеграция с существующими системами ERP.",
+    current_situation: "Ручное планирование маршрутов, простои транспорта.",
+    effect: "295 млн руб./год",
+    category_id: "aluminum",
+    category_name: "АЛЮМИНИЕВЫЙ ДИВИЗИОН",
+    category_emoji: "🏭",
+    status: "🟡 В РАБОТЕ",
+    progress: 20,
+    next_step: "MVP апрель 2027"
+  },
+  {
+    id: 22,
+    icon: "⚖️",
+    title: "ЦИФРОВАЯ ВЕСОВАЯ",
+    customer: "КРАЗ, ТААЗ",
+    object: "Красноярск, Тайшет",
+    description: "Внедрение цифровой системы взвешивания с интеграцией ИИ для контроля качества и автоматической регистрации.",
+    current_situation: "Ручное взвешивание, бумажные журналы.",
+    effect: "3-6 млн руб./год",
+    category_id: "aluminum",
+    category_name: "АЛЮМИНИЕВЫЙ ДИВИЗИОН",
+    category_emoji: "🏭",
+    status: "🟡 В РАБОТЕ",
+    progress: 15,
+    next_step: "MVP 2026"
+  },
+  {
+    id: 23,
+    icon: "📹",
+    title: "ВгАЗ. КОНТРОЛЬ ПРОСТЕНКОВ",
+    customer: "ВгАЗ",
+    object: "Волгоград",
+    description: "Система компьютерного зрения для контроля качества простенков. Автоматическое выявление дефектов и отклонений.",
+    current_situation: "Визуальный осмотр операторами.",
+    effect: "",
+    category_id: "aluminum",
+    category_name: "АЛЮМИНИЕВЫЙ ДИВИЗИОН",
+    category_emoji: "🏭",
+    status: "🟡 В РАБОТЕ",
+    progress: 10,
+    next_step: "Разработка модели"
+  },
+  {
+    id: 24,
+    icon: "🔍",
+    title: "ТАФ. КОНТРОЛЬ НИППЕЛЬНЫХ ГНЕЗД",
+    customer: "ТАФ",
+    object: "Татарстан",
+    description: "Автоматизированный контроль ниппельных гнёзд с использованием нейросетевого анализа изображений.",
+    current_situation: "Ручной контроль, высокий процент брака.",
+    effect: "",
+    category_id: "aluminum",
+    category_name: "АЛЮМИНИЕВЫЙ ДИВИЗИОН",
+    category_emoji: "🏭",
+    status: "🟡 В РАБОТЕ",
+    progress: 5,
+    next_step: "Пилот"
+  },
+  {
+    id: 25,
+    icon: "📊",
+    title: "ПЛАНИРОВАНИЕ ПОСТАВОК ГЛИНОЗЁМА",
+    customer: "АГК",
+    object: "Ачинск",
+    description: "Система прогнозирования и оптимизации поставок глинозёма на основе машинного обучения.",
+    current_situation: "Ручное планирование, избыток/дефицит запасов.",
+    effect: "",
+    category_id: "alumina",
+    category_name: "ГЛИНОЗЁМНЫЙ ДИВИЗИОН",
+    category_emoji: "⛏️",
+    status: "🟡 В РАБОТЕ",
+    progress: 10,
+    next_step: "Сбор данных"
+  },
+  {
+    id: 19,
+    icon: "🏗️",
+    title: "КРАМЗ. ЦИФРОВОЙ ПРЕСС",
+    customer: "КРАМЗ",
+    object: "Красноярск",
+    description: "Система технологических подсказок для операторов пресса на основе анализа данных и лучших практик.",
+    current_situation: "Операторы работают по интуиции, нет обратной связи.",
+    effect: "105 млн руб./год",
+    category_id: "downstream",
+    category_name: "ДАУНСТРИМ",
+    category_emoji: "📦",
+    status: "🟢 ЗАВЕРШЕН",
+    progress: 100,
+    next_step: "В эксплуатации"
+  },
+  {
+    id: 26,
+    icon: "📳",
+    title: "САЯНАЛ. ВИБРОДИАГНОСТИКА",
+    customer: "САЯНАЛ",
+    object: "Саяногорск",
+    description: "Система вибродиагностики оборудования с прогнозированием отказов и планированием ТОиР.",
+    current_situation: "Плановое ТО, аварийные остановки.",
+    effect: "",
+    category_id: "downstream",
+    category_name: "ДАУНСТРИМ",
+    category_emoji: "📦",
+    status: "🟡 В РАБОТЕ",
+    progress: 60,
+    next_step: "Тестирование"
+  },
+  {
+    id: 27,
+    icon: "📅",
+    title: "САЯНАЛ. ОПТИМИЗАТОР ПЛАНИРОВАНИЯ",
+    customer: "САЯНАЛ",
+    object: "Саяногорск",
+    description: "Оптимизация планирования производства с использованием ИИ для учёта множества переменных.",
+    current_situation: "Excel-таблицы, ручное планирование.",
+    effect: "",
+    category_id: "downstream",
+    category_name: "ДАУНСТРИМ",
+    category_emoji: "📦",
+    status: "🟡 В РАБОТЕ",
+    progress: 75,
+    next_step: "Внедрение"
+  },
+  {
+    id: 28,
+    icon: "🌡️",
+    title: "СКАД. ОПТИМИЗАТОР ЛИТЬЯ",
+    customer: "СКАД",
+    object: "Саяногорск",
+    description: "Оптимизация параметров литья с использованием ИИ для снижения брака и повышения качества.",
+    current_situation: "Ручная настройка параметров, высокий брак.",
+    effect: "",
+    category_id: "downstream",
+    category_name: "ДАУНСТРИМ",
+    category_emoji: "📦",
+    status: "🟡 В РАБОТЕ",
+    progress: 40,
+    next_step: "Пилот"
+  },
+  {
+    id: 29,
+    icon: "🤖",
+    title: "AI PLATFORM",
+    customer: "Русал",
+    object: "Москва",
+    description: "Корпоративная платформа ИИ с инструментами для разработки и внедрения ML-моделей.",
+    current_situation: "Разрозненные разработки, нет стандартов.",
+    effect: "",
+    category_id: "central",
+    category_name: "ЦЕНТРАЛЬНАЯ КОМПАНИЯ",
+    category_emoji: "🏢",
+    status: "🟡 В РАБОТЕ",
+    progress: 25,
+    next_step: "Разработка архитектуры"
+  },
+  {
+    id: 30,
+    icon: "💾",
+    title: "DATALAKE",
+    customer: "Русал",
+    object: "Москва",
+    description: "Единый datalake для сбора и обработки производственных данных со всех площадок.",
+    current_situation: "Данные в изолированных системах.",
+    effect: "",
+    category_id: "central",
+    category_name: "ЦЕНТРАЛЬНАЯ КОМПАНИЯ",
+    category_emoji: "🏢",
+    status: "🟡 В РАБОТЕ",
+    progress: 45,
+    next_step: "Миграция данных"
+  },
+  {
+    id: 31,
+    icon: "🚪",
+    title: "ЦИФРОВАЯ ПРОХОДНАЯ",
+    customer: "Русал",
+    object: "Все площадки",
+    description: "Система цифровой идентификации сотрудников и посетителей с контролем доступа.",
+    current_situation: "Пропуска, охрана, журналы.",
+    effect: "",
+    category_id: "central",
+    category_name: "ЦЕНТРАЛЬНАЯ КОМПАНИЯ",
+    category_emoji: "🏢",
+    status: "🟡 В РАБОТЕ",
+    progress: 30,
+    next_step: "Пилот на САЗ"
+  },
+  {
+    id: 32,
+    icon: "⏰",
+    title: "УЧЁТ РАБОЧЕГО ВРЕМЕНИ",
+    customer: "Русал",
+    object: "Все площадки",
+    description: "Автоматизированная система учёта рабочего времени с интеграцией СКУД.",
+    current_situation: "Табели, ручной учёт.",
+    effect: "",
+    category_id: "central",
+    category_name: "ЦЕНТРАЛЬНАЯ КОМПАНИЯ",
+    category_emoji: "🏢",
+    status: "🟡 В РАБОТЕ",
+    progress: 15,
+    next_step: "Сбор требований"
+  }
+];
+
+function getProjectsByCategory(categoryId) {
+  return PROJECTS.filter(p => p.category_id === categoryId);
+}
+
+function getProjectById(id) {
+  return PROJECTS.find(p => p.id === id);
+}
+
+function getCategoryById(id) {
+  return CATEGORIES.find(c => c.id === id);
+}
