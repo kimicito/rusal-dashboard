@@ -1,20 +1,26 @@
 // Rusal Dashboard App
-let currentView = 'order1'; // 'order1', 'key4', 'all', 'project-detail'
+let currentView = 'order1';
 let selectedProjectId = null;
 
 function init() {
   renderOrder1View();
 }
 
+function formatMoney(value) {
+  if (!value || value === 0) return "—";
+  if (value >= 1000) return (value / 1000).toFixed(1) + " млрд";
+  return value + " млн";
+}
+
 function renderOrder1View() {
   currentView = 'order1';
   const app = document.getElementById('app');
   
-  const openProjects = PROJECTS.filter(p => p.status.includes('🟡'));
-  const completedProjects = PROJECTS.filter(p => p.status.includes('🟢'));
+  const openProjects = ORDER1_PROJECTS.filter(p => p.status.includes('🟡'));
+  const completedProjects = ORDER1_PROJECTS.filter(p => p.status.includes('🟢'));
   
-  const totalOpen = openProjects.length;
-  const totalCompleted = completedProjects.length;
+  const openSum = openProjects.reduce((sum, p) => sum + (p.effect || 0), 0);
+  const completedSum = completedProjects.reduce((sum, p) => sum + (p.effect || 0), 0);
   
   app.innerHTML = `
     <div class="dashboard">
@@ -26,25 +32,25 @@ function renderOrder1View() {
       <div class="summary-cards">
         <div class="summary-card">
           <div class="summary-label">Открыто проектов</div>
-          <div class="summary-value">${totalOpen}</div>
-          <div class="summary-sublabel">в работе</div>
+          <div class="summary-value">${formatMoney(openSum)}</div>
+          <div class="summary-sublabel">${openProjects.length} проектов в работе</div>
         </div>
         <div class="summary-card">
           <div class="summary-label">Реализовано</div>
-          <div class="summary-value">${totalCompleted}</div>
-          <div class="summary-sublabel">завершено</div>
+          <div class="summary-value">${formatMoney(completedSum)}</div>
+          <div class="summary-sublabel">${completedProjects.length} проектов завершено</div>
         </div>
       </div>
       
       <div class="divisions-grid">
         ${CATEGORIES.map(cat => {
-          const catProjects = getProjectsByCategory(cat.id);
+          const catProjects = getOrder1ProjectsByCategory(cat.id);
           const openInCat = catProjects.filter(p => p.status.includes('🟡')).length;
           return `
-            <div class="division-card" style="border-left-color: ${cat.color}" onclick="showDivisionProjects('${cat.id}')">
+            <div class="division-card" style="border-left-color: ${cat.color}" onclick="showOrder1DivisionProjects('${cat.id}')">
               <div class="division-emoji">${cat.emoji}</div>
               <div class="division-name">${cat.name}</div>
-              <div class="division-count">${openInCat} проектов</div>
+              <div class="division-count">${catProjects.length} проектов</div>
             </div>
           `;
         }).join('')}
@@ -62,9 +68,9 @@ function renderOrder1View() {
   `;
 }
 
-function showDivisionProjects(categoryId) {
+function showOrder1DivisionProjects(categoryId) {
   const cat = getCategoryById(categoryId);
-  const projects = getProjectsByCategory(categoryId);
+  const projects = getOrder1ProjectsByCategory(categoryId);
   const app = document.getElementById('app');
   
   app.innerHTML = `
@@ -83,7 +89,7 @@ function showDivisionProjects(categoryId) {
               <span class="project-title-small">${proj.title}</span>
               <span class="project-status-badge">${proj.status}</span>
             </div>
-            ${proj.effect ? `<div class="project-effect-small">${proj.effect}</div>` : ''}
+            ${proj.effect > 0 ? `<div class="project-effect-small">${proj.effect} ${proj.effect_currency}</div>` : ''}
           </div>
         `).join('')}
       </div>
@@ -106,6 +112,8 @@ function showDivisionProjects(categoryId) {
 function showProjectDetail(projectId) {
   selectedProjectId = projectId;
   const proj = getProjectById(projectId);
+  if (!proj) return;
+  
   const app = document.getElementById('app');
   
   const progressBar = proj.progress > 0 ? `
@@ -113,6 +121,13 @@ function showProjectDetail(projectId) {
       <div class="progress-fill" style="width: ${proj.progress}%"></div>
     </div>
     <div class="progress-label">${proj.progress}%</div>
+  ` : '';
+  
+  const effectSection = proj.effect > 0 ? `
+    <div class="detail-section">
+      <div class="detail-label">💰 ЭКОНОМИЧЕСКИЙ ЭФФЕКТ</div>
+      <div class="detail-effect">${proj.effect} ${proj.effect_currency || ''}</div>
+    </div>
   ` : '';
   
   app.innerHTML = `
@@ -147,12 +162,7 @@ function showProjectDetail(projectId) {
           </div>
         ` : ''}
         
-        ${proj.effect ? `
-          <div class="detail-section">
-            <div class="detail-label">💰 ЭКОНОМИЧЕСКИЙ ЭФФЕКТ</div>
-            <div class="detail-effect">${proj.effect}</div>
-          </div>
-        ` : ''}
+        ${effectSection}
         
         <div class="detail-section">
           <div class="detail-label">ТЕКУЩИЙ СТАТУС</div>
@@ -189,7 +199,7 @@ function showKey4() {
       </header>
       
       <div class="key-projects-list">
-        ${KEY_PROJECTS.map((proj, idx) => `
+        ${KEY_PROJECTS.map(proj => `
           <div class="key-project-item" onclick="showKeyProjectDetail('${proj.id}')">
             <div class="key-project-icon">${proj.icon}</div>
             <div class="key-project-info">
@@ -215,6 +225,8 @@ function showKey4() {
 
 function showKeyProjectDetail(projectId) {
   const proj = KEY_PROJECTS.find(p => p.id === projectId);
+  if (!proj) return;
+  
   const app = document.getElementById('app');
   
   const progressBar = proj.progress > 0 ? `
@@ -294,14 +306,14 @@ function showAll() {
     <div class="dashboard">
       <header class="header">
         <h1>Все Проекты</h1>
-        <p class="subtitle">Полный список текущих проектов</p>
+        <p class="subtitle">Полный список проектов по дивизионам</p>
       </header>
       
       <div class="all-divisions">
         ${CATEGORIES.map(cat => {
-          const catProjects = getProjectsByCategory(cat.id);
+          const catProjects = getAllProjectsByCategory(cat.id);
           return `
-            <div class="all-division-card" style="--cat-color: ${cat.color}" onclick="showDivisionProjects('${cat.id}')">
+            <div class="all-division-card" style="--cat-color: ${cat.color}" onclick="showAllDivisionProjects('${cat.id}')">
               <div class="all-division-header">
                 <span class="all-division-emoji">${cat.emoji}</span>
                 <span class="all-division-name">${cat.name}</span>
@@ -313,6 +325,47 @@ function showAll() {
       </div>
       
       <div class="view-toggle">
+        <button class="toggle-btn" onclick="renderOrder1View()">
+          ← Приказ №1
+        </button>
+        <button class="toggle-btn" onclick="showKey4()">
+          ⭐ 4 ключевых
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function showAllDivisionProjects(categoryId) {
+  const cat = getCategoryById(categoryId);
+  const projects = getAllProjectsByCategory(categoryId);
+  const app = document.getElementById('app');
+  
+  app.innerHTML = `
+    <div class="dashboard">
+      <header class="header">
+        <div class="back-btn" onclick="showAll()">← Назад</div>
+        <h1>${cat.emoji} ${cat.name}</h1>
+        <p class="subtitle">Все проекты</p>
+      </header>
+      
+      <div class="projects-list-compact">
+        ${projects.map(proj => `
+          <div class="project-compact" onclick="showProjectDetail(${proj.id})">
+            <div class="project-compact-header">
+              <span class="project-icon">${proj.icon}</span>
+              <span class="project-title-small">${proj.title}</span>
+              <span class="project-status-badge">${proj.status}</span>
+            </div>
+            ${proj.effect > 0 ? `<div class="project-effect-small">${proj.effect} ${proj.effect_currency}</div>` : ''}
+          </div>
+        `).join('')}
+      </div>
+      
+      <div class="view-toggle">
+        <button class="toggle-btn" onclick="showAll()">
+          ← Все проекты
+        </button>
         <button class="toggle-btn" onclick="renderOrder1View()">
           ← Приказ №1
         </button>

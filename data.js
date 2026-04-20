@@ -60,7 +60,7 @@ const KEY_PROJECTS = [
   }
 ];
 
-const PROJECTS = [
+const ORDER1_PROJECTS = [
   {
     id: 20,
     icon: "⚙️",
@@ -69,7 +69,8 @@ const PROJECTS = [
     object: "ПЕЧЬ СУШКИ КОКСА",
     description: "ИИ-система управляет процессом подачи мазута в печь сушки кокса на основании онлайн данных влагомера кокса с конвейерной линии.",
     current_situation: "РАЗ В СМЕНУ ОПЕРАТОРЫ ЗАМЕРЯЮТ ВЛАГУ И ВЫСТАВЛЯЮТ ПАРАМЕТРЫ РАБОТЫ ПЕЧИ. ВЛАЖНОСТЬ КОКСА МОЖЕТ ИЗМЕНЯТЬСЯ НЕСКОЛЬКО РАЗ В ТЕЧЕНИЕ СМЕНЫ.",
-    effect: "+8 млн рублей в год",
+    effect: 8,
+    effect_currency: "млн руб/год",
     category_id: "aluminum",
     category_name: "АЛЮМИНИЕВЫЙ ДИВИЗИОН",
     category_emoji: "🏭",
@@ -85,7 +86,8 @@ const PROJECTS = [
     object: "5 заводов АД",
     description: "Оптимизация логистических процессов с использованием алгоритмов машинного обучения. Интеграция с существующими системами ERP.",
     current_situation: "Ручное планирование маршрутов, простои транспорта.",
-    effect: "295 млн руб./год",
+    effect: 295,
+    effect_currency: "млн руб/год",
     category_id: "aluminum",
     category_name: "АЛЮМИНИЕВЫЙ ДИВИЗИОН",
     category_emoji: "🏭",
@@ -101,7 +103,8 @@ const PROJECTS = [
     object: "Красноярск, Тайшет",
     description: "Внедрение цифровой системы взвешивания с интеграцией ИИ для контроля качества и автоматической регистрации.",
     current_situation: "Ручное взвешивание, бумажные журналы.",
-    effect: "3-6 млн руб./год",
+    effect: 4.5,
+    effect_currency: "млн руб/год",
     category_id: "aluminum",
     category_name: "АЛЮМИНИЕВЫЙ ДИВИЗИОН",
     category_emoji: "🏭",
@@ -117,7 +120,8 @@ const PROJECTS = [
     object: "Волгоград",
     description: "Система компьютерного зрения для контроля качества простенков. Автоматическое выявление дефектов и отклонений.",
     current_situation: "Визуальный осмотр операторами.",
-    effect: "",
+    effect: 0,
+    effect_currency: "",
     category_id: "aluminum",
     category_name: "АЛЮМИНИЕВЫЙ ДИВИЗИОН",
     category_emoji: "🏭",
@@ -133,7 +137,8 @@ const PROJECTS = [
     object: "Татарстан",
     description: "Автоматизированный контроль ниппельных гнёзд с использованием нейросетевого анализа изображений.",
     current_situation: "Ручной контроль, высокий процент брака.",
-    effect: "",
+    effect: 0,
+    effect_currency: "",
     category_id: "aluminum",
     category_name: "АЛЮМИНИЕВЫЙ ДИВИЗИОН",
     category_emoji: "🏭",
@@ -149,7 +154,8 @@ const PROJECTS = [
     object: "Ачинск",
     description: "Система прогнозирования и оптимизации поставок глинозёма на основе машинного обучения.",
     current_situation: "Ручное планирование, избыток/дефицит запасов.",
-    effect: "",
+    effect: 0,
+    effect_currency: "",
     category_id: "alumina",
     category_name: "ГЛИНОЗЁМНЫЙ ДИВИЗИОН",
     category_emoji: "⛏️",
@@ -165,7 +171,8 @@ const PROJECTS = [
     object: "Красноярск",
     description: "Система технологических подсказок для операторов пресса на основе анализа данных и лучших практик.",
     current_situation: "Операторы работают по интуиции, нет обратной связи.",
-    effect: "105 млн руб./год",
+    effect: 105,
+    effect_currency: "млн руб/год",
     category_id: "downstream",
     category_name: "ДАУНСТРИМ",
     category_emoji: "📦",
@@ -181,7 +188,8 @@ const PROJECTS = [
     object: "Саяногорск",
     description: "Система вибродиагностики оборудования с прогнозированием отказов и планированием ТОиР.",
     current_situation: "Плановое ТО, аварийные остановки.",
-    effect: "",
+    effect: 0,
+    effect_currency: "",
     category_id: "downstream",
     category_name: "ДАУНСТРИМ",
     category_emoji: "📦",
@@ -197,7 +205,8 @@ const PROJECTS = [
     object: "Саяногорск",
     description: "Оптимизация планирования производства с использованием ИИ для учёта множества переменных.",
     current_situation: "Excel-таблицы, ручное планирование.",
-    effect: "",
+    effect: 0,
+    effect_currency: "",
     category_id: "downstream",
     category_name: "ДАУНСТРИМ",
     category_emoji: "📦",
@@ -213,7 +222,8 @@ const PROJECTS = [
     object: "Саяногорск",
     description: "Оптимизация параметров литья с использованием ИИ для снижения брака и повышения качества.",
     current_situation: "Ручная настройка параметров, высокий брак.",
-    effect: "",
+    effect: 0,
+    effect_currency: "",
     category_id: "downstream",
     category_name: "ДАУНСТРИМ",
     category_emoji: "📦",
@@ -229,7 +239,8 @@ const PROJECTS = [
     object: "Москва",
     description: "Корпоративная платформа ИИ с инструментами для разработки и внедрения ML-моделей.",
     current_situation: "Разрозненные разработки, нет стандартов.",
-    effect: "",
+    effect: 0,
+    effect_currency: "",
     category_id: "central",
     category_name: "ЦЕНТРАЛЬНАЯ КОМПАНИЯ",
     category_emoji: "🏢",
@@ -245,7 +256,8 @@ const PROJECTS = [
     object: "Москва",
     description: "Единый datalake для сбора и обработки производственных данных со всех площадок.",
     current_situation: "Данные в изолированных системах.",
-    effect: "",
+    effect: 0,
+    effect_currency: "",
     category_id: "central",
     category_name: "ЦЕНТРАЛЬНАЯ КОМПАНИЯ",
     category_emoji: "🏢",
@@ -261,7 +273,8 @@ const PROJECTS = [
     object: "Все площадки",
     description: "Система цифровой идентификации сотрудников и посетителей с контролем доступа.",
     current_situation: "Пропуска, охрана, журналы.",
-    effect: "",
+    effect: 0,
+    effect_currency: "",
     category_id: "central",
     category_name: "ЦЕНТРАЛЬНАЯ КОМПАНИЯ",
     category_emoji: "🏢",
@@ -277,7 +290,8 @@ const PROJECTS = [
     object: "Все площадки",
     description: "Автоматизированная система учёта рабочего времени с интеграцией СКУД.",
     current_situation: "Табели, ручной учёт.",
-    effect: "",
+    effect: 0,
+    effect_currency: "",
     category_id: "central",
     category_name: "ЦЕНТРАЛЬНАЯ КОМПАНИЯ",
     category_emoji: "🏢",
@@ -287,14 +301,83 @@ const PROJECTS = [
   }
 ];
 
-function getProjectsByCategory(categoryId) {
-  return PROJECTS.filter(p => p.category_id === categoryId);
+// ВСЕ проекты (более полный список)
+const ALL_PROJECTS = [
+  ...ORDER1_PROJECTS,
+  {
+    id: 33,
+    icon: "🔥",
+    title: "ОПТИМИЗАЦИЯ ГОРЕНИЯ",
+    customer: "САЗ",
+    object: "Саяногорск",
+    description: "ИИ-контроль процесса горения в печах снижает потребление газа и повышает качество продукции.",
+    current_situation: "Операторы управляют вручную по приборам.",
+    effect: 12,
+    effect_currency: "млн руб/год",
+    category_id: "aluminum",
+    category_name: "АЛЮМИНИЕВЫЙ ДИВИЗИОН",
+    category_emoji: "🏭",
+    status: "🟡 В РАБОТЕ",
+    progress: 50,
+    next_step: "Тестирование модели"
+  },
+  {
+    id: 34,
+    icon: "🧪",
+    title: "КОНТРОЛЬ КАЧЕСТВА АЛЮМИНИЯ",
+    customer: "КРАЗ",
+    object: "Красноярск",
+    description: "Автоматизированная система контроля качества алюминия с использованием компьютерного зрения.",
+    current_situation: "Визуальный осмотр, ручная проверка.",
+    effect: 18,
+    effect_currency: "млн руб/год",
+    category_id: "aluminum",
+    category_name: "АЛЮМИНИЕВЫЙ ДИВИЗИОН",
+    category_emoji: "🏭",
+    status: "🟡 В РАБОТЕ",
+    progress: 35,
+    next_step: "Пилот"
+  },
+  {
+    id: 35,
+    icon: "🌊",
+    title: "ОЧИСТКА ВОДЫ",
+    customer: "АГК",
+    object: "Ачинск",
+    description: "Оптимизация процессов очистки воды с использованием ИИ для снижения потребления реагентов.",
+    current_situation: "Ручная регулировка, избыточный расход реагентов.",
+    effect: 6,
+    effect_currency: "млн руб/год",
+    category_id: "alumina",
+    category_name: "ГЛИНОЗЁМНЫЙ ДИВИЗИОН",
+    category_emoji: "⛏️",
+    status: "🟡 В РАБОТЕ",
+    progress: 20,
+    next_step: "MVP"
+  }
+];
+
+function getOrder1ProjectsByCategory(categoryId) {
+  return ORDER1_PROJECTS.filter(p => p.category_id === categoryId);
+}
+
+function getAllProjectsByCategory(categoryId) {
+  return ALL_PROJECTS.filter(p => p.category_id === categoryId);
 }
 
 function getProjectById(id) {
-  return PROJECTS.find(p => p.id === id);
+  return ALL_PROJECTS.find(p => p.id === id) || ORDER1_PROJECTS.find(p => p.id === id);
 }
 
 function getCategoryById(id) {
   return CATEGORIES.find(c => c.id === id);
+}
+
+function calculateTotalEffect(projects) {
+  return projects.reduce((sum, p) => sum + (p.effect || 0), 0);
+}
+
+function formatEffect(value, currency) {
+  if (!value || value === 0) return "—";
+  return `${value} ${currency || ""}`;
 }
