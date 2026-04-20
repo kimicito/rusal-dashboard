@@ -29,16 +29,15 @@ function renderOrder1View() {
         <p class="subtitle">Проекты приказа №1</p>
       </header>
       
+
       <div class="summary-cards">
         <div class="summary-card">
-          <div class="summary-label">Открыто проектов</div>
-          <div class="summary-value">${formatMoney(openSum)}</div>
-          <div class="summary-sublabel">${openProjects.length} проектов в работе</div>
+          <div class="summary-label">Открыто проектов на сумму</div>
+          <div class="summary-value">2,4 млрд руб</div>
         </div>
         <div class="summary-card">
-          <div class="summary-label">Реализовано</div>
-          <div class="summary-value">${formatMoney(completedSum)}</div>
-          <div class="summary-sublabel">${completedProjects.length} проектов завершено</div>
+          <div class="summary-label">Реализовано проектов на сумму</div>
+          <div class="summary-value">350 млн руб</div>
         </div>
       </div>
       
